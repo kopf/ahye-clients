@@ -31,6 +31,6 @@ if __name__ == '__main__':
     headers = {'User-Agent': 'ahye-python {0}'.format(VERSION)}
     url = '{0}:{1}{2}'.format(SERVER['host'], SERVER['port'], SERVER['path'])
     resp = requests.post(url, auth=SERVER['auth'], headers=headers,
-                         files=files, proxies=PROXIES)
+                         files=files, proxies=PROXIES, verify=False)
     subprocess.Popen(COMMANDS['browser'].format(url=resp.text).split(' '))
     os.remove(tmp_file)
