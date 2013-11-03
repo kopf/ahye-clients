@@ -7,6 +7,8 @@ import sys
 import requests
 
 
+BASEDIR = os.path.abspath(os.path.dirname(__file__))
+
 COMMANDS = {
     'linux2': {
         'browser': 'x-www-browser {url}',
@@ -15,6 +17,10 @@ COMMANDS = {
     'darwin': {
         'browser': 'open {url}',
         'screenshot': 'screencapture -s {filename}'
+    },
+    'win32': {
+        'browser': 'start {url}',
+        'screenshot': os.path.join(BASEDIR, 'boxcutter.exe') + ' {filename}'
     }
 }
 
