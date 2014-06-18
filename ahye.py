@@ -29,7 +29,7 @@ PROXIES = {
 }
 
 SERVER = {
-    'host': 'http://ahye.ventolin.org',
+    'host': 'http://ahye.zzzz.io',
     'port': 80,
     'path': '/upload',
     'auth': () # empty, or in the form ('username', 'password')
