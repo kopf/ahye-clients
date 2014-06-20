@@ -19,7 +19,7 @@ COMMANDS = {
         'screenshot': 'screencapture -s {0}'
     },
     'win32': {
-        'browser': 'start {0}',
+        'browser': 'cmd /c start {0}',
         'screenshot': os.path.join(BASEDIR, 'boxcutter.exe') + ' {0}'
     }
 }
@@ -39,7 +39,9 @@ VERSION = '1.0'
 
 
 if __name__ == '__main__':
-    tmp_file = tempfile.mkstemp(suffix='.png')[1]
+    # race conditions ahoy
+    with tempfile.NamedTemporaryFile(suffix='.png') as t:
+        tmp_file = t.name
     command = COMMANDS[sys.platform]['screenshot'].format(tmp_file).split(' ')
     subprocess.call(command)
     files = {'imagedata': open(tmp_file, 'rb')}
